@@ -93,7 +93,7 @@ create = (activation,activeCount,layers) =>{
     }
     return world
 }
-run = (input,n) =>{
+run1 = (input,n) =>{
     world[n].NN[0].Layers = input;        
 }
 activate = (i,i2,i3) =>{
@@ -170,7 +170,7 @@ function Tanh(x){
 
 // }
 runNN = (inputs,n) =>{
-    run(inputs,n)
+    run1(inputs,n)
     return fill(n);
 }
 function splitInputs(originalList,chosenPer){
