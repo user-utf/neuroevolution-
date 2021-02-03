@@ -1,16 +1,16 @@
 var Henrievolution = function (options) {
     //potentialy inform weather we have it
-    world: create(options.AF,options.Pop, options.Layers)
+    world: create(options.AF,options.population, options.layers)
 
-    self.SetScore = (e,score) =>{
+    self.setScore = (e,score) =>{
         world[e].value = score
     }
-    self.Run = (player,inputs) =>{
+    self.run = (player,inputs) =>{
         return runNN(inputs,player)
     }
 
-    self.Mutate = (Perce,topx) =>{
-        world = Mutation(Perce,topx)
+    self.mutate = (Perce,topx) =>{
+        world = mutation(Perce,topx)
     }
     return self
 
@@ -19,7 +19,7 @@ var Henrievolution = function (options) {
 // var x = new Henrievolution({AF:'sigmoid',Pop:10,Layers:[3,4,5]})
 
 
-Mutation = (MutationProbability,chosen) =>{
+mutation = (MutationProbability,chosen) =>{
     var catigories = splitInputs(world,chosen);
     var topInputs = catigories[0];
     // console.log(topInputs == sortInputsByVal(topInputs))
@@ -57,7 +57,7 @@ Mutation = (MutationProbability,chosen) =>{
     return sortInputsByVal(topInputs)
 }
  
-  Unmatrixfy = (array) =>{
+  unmatrixfy = (array) =>{
     var answer = [];
     for (var i = 0; i < array.length; i++){
         for (var b = 0; b < array[i].length; b++){
@@ -67,9 +67,9 @@ Mutation = (MutationProbability,chosen) =>{
     return answer;
 }
 
-create = (activation,active_count,layers) =>{
+create = (activation,activeCount,layers) =>{
     world = []
-    for (var n = 0; n < active_count; n++){
+    for (var n = 0; n < activeCount; n++){
     //creating the NNs
     world.push({NN:[],value:0})
         for (var l = 0; l < layers.length; l++){
